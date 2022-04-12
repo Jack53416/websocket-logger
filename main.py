@@ -31,6 +31,7 @@ def startup():
         'diagnose': False,
         'enqueue': True
     })
+    logger.info("Server started")
 
 
 @app.get("/hello")
@@ -46,8 +47,8 @@ async def websocket_logger(websocket: WebSocket,
     try:
         while True:
             data = await websocket.receive_text()
-            logger.debug(f'[{client_name}] got message:',
-                         name='websocket-data',
-                         payload=data if compact_log else json.loads(data))
+            logger.info(f'[{client_name}] got message:',
+                        name='websocket-data',
+                        payload=data if compact_log else json.loads(data))
     except WebSocketDisconnect:
         manager.disconnect(client_name)

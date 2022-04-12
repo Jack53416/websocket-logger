@@ -63,7 +63,7 @@ class AppLogger(object):
         loggers = (
             logging.getLogger(name)
             for name in logging.root.manager.loggerDict
-            if name.startswith('uvicorn') or name.startswith('huey')
+            if name.lower().startswith('uvicorn')
         )
         for service_logger in loggers:
             service_logger.handlers = []
