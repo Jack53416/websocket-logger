@@ -1,16 +1,18 @@
-import json
 import sys
 from datetime import timedelta
 
-from fastapi import FastAPI, Query
+import uvicorn
+from fastapi import FastAPI
 from loguru import logger
-from starlette.websockets import WebSocket, WebSocketDisconnect
 
-from connection_manager import ConnectionManager
-from log import AppLogger
+from app.api.api import api_router
+from app.core.config import settings
+from app.core.log import AppLogger
+from app.core.middleware import register_middlewares
 
 app = FastAPI()
-manager = ConnectionManager()
+register_middlewares(app)
+app.include_router(api_router)
 
 
 @app.on_event('startup')
@@ -34,21 +36,5 @@ def startup():
     logger.info("Server started")
 
 
-@app.get("/hello")
-def hello():
-    return 'hello'
-
-
-@app.websocket("/ws/{client_name}")
-async def websocket_logger(websocket: WebSocket,
-                           client_name: str,
-                           compact_log: str = Query(True, alias='compactLog')):
-    await manager.connect(websocket, client_name)
-    try:
-        while True:
-            data = await websocket.receive_text()
-            logger.info(f'[{client_name}] got message:',
-                        name='websocket-data',
-                        payload=data if compact_log else json.loads(data))
-    except WebSocketDisconnect:
-        manager.disconnect(client_name)
+if __name__ == '__main__':
+    uvicorn.run('main:app', host=str(settings.SERVER_HOST), port=settings.SERVER_PORT, reload=True)
