@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Optional, Dict, List, Tuple, Iterable
+from typing import Optional, Dict, List, Tuple, Iterable, Any
 
 from pydantic import BaseModel
 
@@ -28,7 +28,7 @@ class PointGeometry(Geometry):
 
 class Feature(BaseModel):
     type: GeometryType = GeometryType.FEATURE
-    properties: Optional[Dict[str, str]]
+    properties: Optional[Dict[str, Any]]
     geometry: Geometry
 
 
