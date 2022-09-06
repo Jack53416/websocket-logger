@@ -28,11 +28,12 @@ class PointGeometry(Geometry):
 
 class Feature(BaseModel):
     type: GeometryType = GeometryType.FEATURE
-    properties: Optional[Dict[str, Any]]
+    bbox: List[float] | None
+    properties: Dict[str, Any] | None
     geometry: Geometry
 
 
 class FeatureCollection(BaseModel):
     type: GeometryType = GeometryType.FEATURE_COLLECTION
+    bbox: List[float] | None
     features: List[Feature]
-
