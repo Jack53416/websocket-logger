@@ -64,5 +64,5 @@ def load_db() -> Database:
 
 
 if __name__ == '__main__':
-    create_sources()
+    # create_sources()
     assign_trip_bboxes()
