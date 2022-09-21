@@ -33,7 +33,7 @@ def find_trip(origin: str = Form(...),
 def get_buses_positions(id: str, db: Database = Depends(get_db)):
     value = random.randrange(1, 5)
     sign = random.choice([-1, 1])
-    difference = (value / 100) * sign
+    difference = (value / 1000) * sign
     buses = [
         GeoPoint(
             latitude=round(bus.latitude + difference, 5),
