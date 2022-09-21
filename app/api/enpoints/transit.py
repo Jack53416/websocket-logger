@@ -1,7 +1,11 @@
+import uuid
+
 from fastapi import APIRouter, Depends, Form
 
 from app.db.database import get_db
+from app.schemas.bus import BusCollection
 from app.schemas.database import Database
+from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import PlacesCollection
 from app.schemas.trip import TripCollection
 
@@ -22,3 +26,8 @@ def find_trip(origin: str = Form(...),
               destination: str = Form(...),
               db: Database = Depends(get_db)):
     return db.trip_collection
+
+
+@router.get("/rides/{id}", response_model=BusCollection)
+def get_buses_positions(id: str, db: Database = Depends(get_db)):
+    return db.bus_locations

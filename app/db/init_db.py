@@ -5,6 +5,7 @@ from typing import Iterable
 
 from faker import Faker
 
+from app.schemas.bus import GeoPoint, BusCollection
 from app.schemas.database import Database
 from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import Quay, PlacesCollection
@@ -13,12 +14,27 @@ from app.schemas.trip import TripCollection
 QUAYS_COUNT = 20
 PLACES_FILE = 'places.json'
 TRIPS_FILE = 'trips.json'
+BUSES_FILE = 'buses.json'
 
 fake = Faker()
 
 
 def create_sources():
     create_places()
+
+
+def create_bus_locations():
+    points = [
+        (19.462109, 51.712512),
+        (19.420609, 51.773098),
+        (19.340841, 51.811713)
+    ]
+    geo_points = [GeoPoint(latitude=point[1], longitude=point[0]) for point in points]
+
+    with open(f'./sources/{BUSES_FILE}', 'w') as file:
+        file.write(
+            BusCollection(buses=geo_points).json()
+        )
 
 
 def create_places():
@@ -56,13 +72,16 @@ def compute_trip_bbox(feature_collection: FeatureCollection):
 
 def load_db() -> Database:
     with Path(f'app/db/sources/{PLACES_FILE}').open('r') as places_file, \
-            Path(f'app/db/sources/{TRIPS_FILE}').open('r') as trips_file:
+            Path(f'app/db/sources/{TRIPS_FILE}').open('r') as trips_file, \
+            Path(f'app/db/sources/{BUSES_FILE}').open('r') as buses_file:
         return Database(
             places_collection=PlacesCollection.parse_raw(places_file.read()),
-            trip_collection=TripCollection.parse_raw(trips_file.read())
+            trip_collection=TripCollection.parse_raw(trips_file.read()),
+            bus_locations=BusCollection.parse_raw(buses_file.read())
         )
 
 
 if __name__ == '__main__':
-    # create_sources()
-    assign_trip_bboxes()
+    create_bus_locations()
+# create_sources()
+# assign_trip_bboxes()
