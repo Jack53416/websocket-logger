@@ -5,10 +5,10 @@ from typing import Iterable
 
 from faker import Faker
 
-from app.schemas.bus import GeoPoint, BusCollection
 from app.schemas.database import Database
-from app.schemas.geojson import FeatureCollection
+from app.schemas.geojson import FeatureCollection, PointGeometry
 from app.schemas.quay import Quay, PlacesCollection
+from app.schemas.ride import Ride, RideCollection
 from app.schemas.trip import TripCollection
 
 QUAYS_COUNT = 20
@@ -29,11 +29,11 @@ def create_bus_locations():
         (19.420609, 51.773098),
         (19.340841, 51.811713)
     ]
-    geo_points = [GeoPoint(latitude=point[1], longitude=point[0]) for point in points]
+    rides = [Ride(id=uuid.uuid4(), position=PointGeometry(coordinates=point)) for point in points]
 
     with open(f'./sources/{BUSES_FILE}', 'w') as file:
         file.write(
-            BusCollection(buses=geo_points).json()
+            RideCollection(rides=rides).json()
         )
 
 
@@ -77,7 +77,7 @@ def load_db() -> Database:
         return Database(
             places_collection=PlacesCollection.parse_raw(places_file.read()),
             trip_collection=TripCollection.parse_raw(trips_file.read()),
-            bus_locations=BusCollection.parse_raw(buses_file.read())
+            bus_locations=RideCollection.parse_raw(buses_file.read())
         )
 
 

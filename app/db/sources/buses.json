@@ -1,1 +1,1 @@
-{"buses": [{"longitude": 19.462109, "latitude": 51.712512}, {"longitude": 19.420609, "latitude": 51.773098}, {"longitude": 19.340841, "latitude": 51.811713}]}
+{"rides": [{"id": "ccd95157-ced6-4b75-90a5-ae9f85b8c57d", "position": {"type": "Point", "coordinates": [19.462109, 51.712512]}}, {"id": "9746ea77-02c8-4753-a457-e770b028695a", "position": {"type": "Point", "coordinates": [19.420609, 51.773098]}}, {"id": "5a7e7a3f-20b1-4cd4-a313-65ef0ac64e77", "position": {"type": "Point", "coordinates": [19.340841, 51.811713]}}]}
