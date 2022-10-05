@@ -1,7 +1,8 @@
 import random
 import uuid
+from typing import List
 
-from fastapi import APIRouter, Depends, Form
+from fastapi import APIRouter, Depends, Form, Query
 
 from app.db.database import get_db
 from app.schemas.bus import BusCollection, GeoPoint
@@ -29,8 +30,8 @@ def find_trip(origin: str = Form(...),
     return db.trip_collection
 
 
-@router.get("/rides/{id}", response_model=BusCollection)
-def get_buses_positions(id: str, db: Database = Depends(get_db)):
+@router.get("/rides", response_model=BusCollection)
+def get_buses_positions(db: Database = Depends(get_db), rides: List[str] = Query(...)):
     value = random.randrange(1, 5)
     sign = random.choice([-1, 1])
     difference = (value / 1000) * sign
