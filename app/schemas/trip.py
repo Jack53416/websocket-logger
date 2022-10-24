@@ -21,6 +21,8 @@ class Tenant(RWSchema, BaseModel):
 class Line(RWSchema, BaseModel):
     id: uuid.UUID
     name: str
+    short_name: str | None
+    number: str | None
 
 
 class TripPart(RWSchema, BaseModel):
