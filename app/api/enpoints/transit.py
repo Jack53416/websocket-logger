@@ -47,7 +47,6 @@ def get_buses_positions(db: Database = Depends(get_db),
         )
         for ride in ride_progress
     ]
-    print(ride_progress)
 
     def increment_progress(progress):
         progress = round(progress + ride_increment, 2)
