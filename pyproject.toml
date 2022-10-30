@@ -12,6 +12,7 @@ loguru = "^0.6.0"
 websockets = "10.1"
 Faker = "^14.2.0"
 python-multipart = "^0.0.5"
+numpy = "^1.23.4"
 
 [tool.poetry.dev-dependencies]
 
