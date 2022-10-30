@@ -1,8 +1,8 @@
-import random
-from typing import List
+import uuid
 
-from fastapi import APIRouter, Depends, Form, Query
+from fastapi import APIRouter, Depends, Form, Path
 
+from app.api.utils.RideSimulator import RideSimulator
 from app.db.database import get_db
 from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry
@@ -11,6 +11,8 @@ from app.schemas.ride import RideCollection, Ride
 from app.schemas.trip import TripCollection
 
 router = APIRouter()
+ride_progress = [0, 0.5, 0.8]
+ride_increment = 0.05
 
 
 @router.get('/places-collection/{phrase}',
@@ -29,21 +31,29 @@ def find_trip(origin: str = Form(...),
     return db.trip_collection
 
 
-@router.get("/rides", response_model=RideCollection)
-def get_buses_positions(db: Database = Depends(get_db), rides: List[str] = Query(...)):
-    value = random.randrange(1, 5)
-    sign = random.choice([-1, 1])
-    difference = (value / 1000) * sign
-
+@router.get("/route/{routeId}", response_model=RideCollection)
+def get_buses_positions(db: Database = Depends(get_db),
+                        route_id: str = Path(..., alias='routeId'),
+                        ride_simulator: RideSimulator = Depends(RideSimulator)):
+    global ride_progress
+    ride_simulator.load_route(db.trip_collection.trips[0].trip_parts[0].route_geometry)
     rides = [
         Ride(
-            id=ride.id,
+            id=uuid.uuid4(),
             position=PointGeometry(
-                coordinates=tuple(map(lambda coord: round(coord + difference, 5), ride.position.coordinates))
+                coordinates=ride_simulator.interpolate(ride)
 
             )
         )
-        for ride in db.bus_locations.rides
+        for ride in ride_progress
     ]
+    print(ride_progress)
 
+    def increment_progress(progress):
+        progress = round(progress + ride_increment, 2)
+        if progress > 1:
+            return 0
+        return progress
+
+    ride_progress = list(map(increment_progress, ride_progress))
     return RideCollection(rides=rides)
