@@ -31,7 +31,7 @@ def find_trip(origin: str = Form(...),
     return db.trip_collection
 
 
-@router.get("/route/{routeId}", response_model=RideCollection)
+@router.get("/route/{routeId}/rides", response_model=RideCollection)
 def get_buses_positions(db: Database = Depends(get_db),
                         route_id: str = Path(..., alias='routeId'),
                         ride_simulator: RideSimulator = Depends(RideSimulator)):
