@@ -5,6 +5,7 @@ from typing import Iterable
 
 from faker import Faker
 
+from app.schemas.city import City, CitiesCollection
 from app.schemas.database import Database
 from app.schemas.geojson import FeatureCollection, PointGeometry
 from app.schemas.quay import Quay, PlacesCollection
@@ -15,12 +16,27 @@ QUAYS_COUNT = 20
 PLACES_FILE = 'places.json'
 TRIPS_FILE = 'trips.json'
 BUSES_FILE = 'buses.json'
+CITIES_FILE = 'cities.json'
 
 fake = Faker()
 
 
-def create_sources():
-    create_places()
+def create_cities():
+    model_fields = City.schema()['required']
+
+    raw_data = [
+        ('Warsaw', 'Poland', 'PL', [20.851688337, 52.097849613, 21.271151294, 52.368153945]),
+        ('Lodz', 'Poland', 'PL', [19.3208619, 51.686144256, 19.63994302, 51.859919288]),
+        ('München', 'Germany', 'DE', [11.360781, 48.061596, 11.722879, 48.248216]),
+        ('Nairobi', 'Kenya', 'KE', [36.664464, -1.445609, 37.104955, -1.160583])
+    ]
+
+    cities: CitiesCollection = CitiesCollection(__root__=[
+        City(**dict(zip(model_fields, record))) for record in raw_data
+    ])
+
+    with open(f'./sources/{CITIES_FILE}', 'w') as file:
+        file.write(cities.json())
 
 
 def create_bus_locations():
@@ -73,15 +89,16 @@ def compute_trip_bbox(feature_collection: FeatureCollection):
 def load_db() -> Database:
     with Path(f'app/db/sources/{PLACES_FILE}').open('r') as places_file, \
             Path(f'app/db/sources/{TRIPS_FILE}').open('r') as trips_file, \
-            Path(f'app/db/sources/{BUSES_FILE}').open('r') as buses_file:
+            Path(f'app/db/sources/{BUSES_FILE}').open('r') as buses_file, \
+            Path(f'app/db/sources/{CITIES_FILE}').open('r') as cities_file:
         return Database(
             places_collection=PlacesCollection.parse_raw(places_file.read()),
             trip_collection=TripCollection.parse_raw(trips_file.read()),
-            bus_locations=RideCollection.parse_raw(buses_file.read())
+            bus_locations=RideCollection.parse_raw(buses_file.read()),
+            cities=CitiesCollection.parse_raw(cities_file.read()).__root__
         )
 
-
-if __name__ == '__main__':
-    create_bus_locations()
+# if __name__ == '__main__':
+# create_cities()
 # create_sources()
 # assign_trip_bboxes()

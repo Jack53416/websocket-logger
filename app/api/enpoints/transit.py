@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Form, Path
 
 from app.api.utils.RideSimulator import RideSimulator
 from app.db.database import get_db
+from app.schemas.city import City
 from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry
 from app.schemas.quay import PlacesCollection
@@ -56,3 +57,8 @@ def get_buses_positions(db: Database = Depends(get_db),
 
     ride_progress = list(map(increment_progress, ride_progress))
     return RideCollection(rides=rides)
+
+
+@router.get('/cities', response_model=list[City])
+def get_cities(db: Database = Depends(get_db)):
+    return db.cities
