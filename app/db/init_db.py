@@ -17,6 +17,7 @@ PLACES_FILE = 'places.json'
 TRIPS_FILE = 'trips.json'
 BUSES_FILE = 'buses.json'
 CITIES_FILE = 'cities.json'
+BUS_STOPS_FILE = 'bus-stops.json'
 
 fake = Faker()
 
@@ -90,12 +91,14 @@ def load_db() -> Database:
     with Path(f'app/db/sources/{PLACES_FILE}').open('r') as places_file, \
             Path(f'app/db/sources/{TRIPS_FILE}').open('r') as trips_file, \
             Path(f'app/db/sources/{BUSES_FILE}').open('r') as buses_file, \
-            Path(f'app/db/sources/{CITIES_FILE}').open('r') as cities_file:
+            Path(f'app/db/sources/{CITIES_FILE}').open('r') as cities_file, \
+            Path(f'app/db/sources/{BUS_STOPS_FILE}').open('r') as bus_stops_file:
         return Database(
             places_collection=PlacesCollection.parse_raw(places_file.read()),
             trip_collection=TripCollection.parse_raw(trips_file.read()),
             bus_locations=RideCollection.parse_raw(buses_file.read()),
-            cities=CitiesCollection.parse_raw(cities_file.read()).__root__
+            cities=CitiesCollection.parse_raw(cities_file.read()).__root__,
+            bus_stops=FeatureCollection.parse_raw(bus_stops_file.read()),
         )
 
 # if __name__ == '__main__':

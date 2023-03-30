@@ -6,7 +6,7 @@ from app.api.utils.RideSimulator import RideSimulator
 from app.db.database import get_db
 from app.schemas.city import City
 from app.schemas.database import Database
-from app.schemas.geojson import PointGeometry
+from app.schemas.geojson import PointGeometry, FeatureCollection
 from app.schemas.quay import PlacesCollection
 from app.schemas.ride import RideCollection, Ride
 from app.schemas.trip import TripCollection
@@ -62,3 +62,8 @@ def get_buses_positions(db: Database = Depends(get_db),
 @router.get('/cities', response_model=list[City])
 def get_cities(db: Database = Depends(get_db)):
     return db.cities
+
+
+@router.get('/quays', response_model=FeatureCollection)
+def get_bus_stops(db: Database = Depends(get_db)):
+    return db.bus_stops

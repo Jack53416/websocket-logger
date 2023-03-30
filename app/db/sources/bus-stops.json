@@ -1,0 +1,289 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bartoszewskiego-Demokratyczna",
+        "id": "940"
+      },
+      "geometry": {
+        "coordinates": [
+          19.462296,
+          51.711608
+        ],
+        "type": "Point"
+      },
+      "id": "02cf15401c9e430f84fa7fe8b4da5142"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bar",
+        "id": "938"
+      },
+      "geometry": {
+        "coordinates": [
+          19.457158,
+          51.717256
+        ],
+        "type": "Point"
+      },
+      "id": "0c4a0bf34cb7f885078e143a0e7ea219"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana Pawła II - Wróblewskiego",
+        "id": "1400"
+      },
+      "geometry": {
+        "coordinates": [
+          19.440501,
+          51.744702
+        ],
+        "type": "Point"
+      },
+      "id": "1492ffc1198982dfd5222fedbf5bfdeb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broniewskiego-Kraszewskiego",
+        "id": "0048"
+      },
+      "geometry": {
+        "coordinates": [
+          19.481377,
+          51.732176
+        ],
+        "type": "Point"
+      },
+      "id": "3ca0a389a237ed8d9aed3e6727c2dd80"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bronieskiego-Kilińskiego",
+        "id": "0053"
+      },
+      "geometry": {
+        "coordinates": [
+          19.475484,
+          51.730869
+        ],
+        "type": "Point"
+      },
+      "id": "48fb26f2c94cb43b466f1f5887fa78d4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana Pawła II - Obywatelska",
+        "id": "1300"
+      },
+      "geometry": {
+        "coordinates": [
+          19.442322,
+          51.736621
+        ],
+        "type": "Point"
+      },
+      "id": "4d171694a58d6a6454970985d7ee5280"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana Pawła II - Pabianicka",
+        "id": "1298"
+      },
+      "geometry": {
+        "coordinates": [
+          19.447242,
+          51.7274
+        ],
+        "type": "Point"
+      },
+      "id": "5b6472430949333f483ab82237363b79"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rzgowska-Bankowa",
+        "id": "1025"
+      },
+      "geometry": {
+        "coordinates": [
+          19.476568,
+          51.72907
+        ],
+        "type": "Point"
+      },
+      "id": "5cbf42bb7e4a6d315b29dbeaa023aef4"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bartoszewskiego-Demokratyczna",
+        "id": "941"
+      },
+      "geometry": {
+        "coordinates": [
+          19.462459,
+          51.711911
+        ],
+        "type": "Point"
+      },
+      "id": "5f75dfa11a6e215c23467d7d62a99b7a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bartoszewskiego-Pryncypalna",
+        "id": "939"
+      },
+      "geometry": {
+        "coordinates": [
+          19.456953,
+          51.717904
+        ],
+        "type": "Point"
+      },
+      "id": "644a90a96273546836512a57922a7f5b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana",
+        "id": "1299"
+      },
+      "geometry": {
+        "coordinates": [
+          19.447877,
+          51.726603
+        ],
+        "type": "Point"
+      },
+      "id": "89715700b4e20263b08a8833d90dd548"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rzgowska-Broniewskiego",
+        "id": "0047"
+      },
+      "geometry": {
+        "coordinates": [
+          19.47519,
+          51.730533
+        ],
+        "type": "Point"
+      },
+      "id": "8af8e9b13de053ddb7185c73cef9ff5d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Siostrzana-Bartoszewskiego",
+        "id": "778"
+      },
+      "geometry": {
+        "coordinates": [
+          19.467258,
+          51.705552
+        ],
+        "type": "Point"
+      },
+      "id": "97c263119e957daf979245af26f8a038"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broniewskiego-Śmigłego-Rydza",
+        "id": "0049"
+      },
+      "geometry": {
+        "coordinates": [
+          19.486851,
+          51.732517
+        ],
+        "type": "Point"
+      },
+      "id": "9901f3dbe33e9dfdd6fb8c75acda8ca6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana Pawła II - Obywatelska",
+        "id": "1301"
+      },
+      "geometry": {
+        "coordinates": [
+          19.442036,
+          51.736348
+        ],
+        "type": "Point"
+      },
+      "id": "b54e57d2a14c72d3063b91a06ae5e45e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bartoszewskiego-Siostrzana",
+        "id": 943
+      },
+      "geometry": {
+        "coordinates": [
+          19.467465,
+          51.705637
+        ],
+        "type": "Point"
+      },
+      "id": "cdc8ed891cd0fb9f2275d07b37c9e648"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broniweskiego-Kilińskiego"
+      },
+      "geometry": {
+        "coordinates": [
+          19.477389,
+          51.731689
+        ],
+        "type": "Point"
+      },
+      "id": "e4314988f74335ba1fad19678c095fb3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jana Pawła II - Wróblewskiego",
+        "id": "1401"
+      },
+      "geometry": {
+        "coordinates": [
+          19.440651,
+          51.74511
+        ],
+        "type": "Point"
+      },
+      "id": "e678827bf0d2f08a4170ce632ef88c47"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broniewskiego-Kraszewskiego",
+        "id": "0052"
+      },
+      "geometry": {
+        "coordinates": [
+          19.481215,
+          51.732313
+        ],
+        "type": "Point"
+      },
+      "id": "e9f56c287c90a1942cc8a3d4bab4b38f"
+    }
+  ],
+  "type": "FeatureCollection"
+}
