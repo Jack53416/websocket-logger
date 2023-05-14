@@ -25,38 +25,38 @@ def search_location(phrase: str,
     )
 
 
-@router.post('/trips', response_model=TripCollection)
-def find_trip(origin: str = Form(...),
-              destination: str = Form(...),
-              db: Database = Depends(get_db)):
-    return db.trip_collection
-
-
-@router.get("/route/{routeId}/rides", response_model=RideCollection)
-def get_buses_positions(db: Database = Depends(get_db),
-                        route_id: str = Path(..., alias='routeId'),
-                        ride_simulator: RideSimulator = Depends(RideSimulator)):
-    global ride_progress
-    ride_simulator.load_route(db.trip_collection.trips[0].trip_parts[0].route_geometry)
-    rides = [
-        Ride(
-            id=uuid.uuid4(),
-            position=PointGeometry(
-                coordinates=ride_simulator.interpolate(ride)
-
-            )
-        )
-        for ride in ride_progress
-    ]
-
-    def increment_progress(progress):
-        progress = round(progress + ride_increment, 2)
-        if progress > 1:
-            return 0
-        return progress
-
-    ride_progress = list(map(increment_progress, ride_progress))
-    return RideCollection(rides=rides)
+# @router.post('/trips', response_model=TripCollection)
+# def find_trip(origin: str = Form(...),
+#               destination: str = Form(...),
+#               db: Database = Depends(get_db)):
+#     return db.trips
+#
+#
+# @router.get("/route/{routeId}/rides", response_model=RideCollection)
+# def get_buses_positions(db: Database = Depends(get_db),
+#                         route_id: str = Path(..., alias='routeId'),
+#                         ride_simulator: RideSimulator = Depends(RideSimulator)):
+#     global ride_progress
+#     ride_simulator.load_route(db.trips.trips[0].trip_parts[0].route_geometry)
+#     rides = [
+#         Ride(
+#             id=uuid.uuid4(),
+#             position=PointGeometry(
+#                 coordinates=ride_simulator.interpolate(ride)
+#
+#             )
+#         )
+#         for ride in ride_progress
+#     ]
+#
+#     def increment_progress(progress):
+#         progress = round(progress + ride_increment, 2)
+#         if progress > 1:
+#             return 0
+#         return progress
+#
+#     ride_progress = list(map(increment_progress, ride_progress))
+#     return RideCollection(rides=rides)
 
 
 @router.get('/cities', response_model=list[City])

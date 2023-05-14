@@ -1,5 +1,5 @@
 import uuid
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -13,4 +13,4 @@ class Ride(RWSchema, BaseModel):
 
 
 class RideCollection(RWSchema, BaseModel):
-    rides: List[Ride]
+    __root__: list[Ride]

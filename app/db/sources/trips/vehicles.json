@@ -1,0 +1,32 @@
+[
+  {
+    "id": "16e2b411-ea00-475d-8bda-bda5b721c88c",
+    "position": {
+      "type": "Point",
+      "coordinates": [
+        20.987722,
+        52.225023
+      ]
+    }
+  },
+  {
+    "id": "43a7b57c-a00a-4466-9af5-f431d993794f",
+    "position": {
+      "type": "Point",
+      "coordinates": [
+        19.462109,
+        51.712512
+      ]
+    }
+  },
+  {
+    "id": "0a9b32fe-7148-4bc3-83c3-7f64c996037c",
+    "position": {
+      "type": "Point",
+      "coordinates": [
+        19.420609,
+        51.773098
+      ]
+    }
+  }
+]

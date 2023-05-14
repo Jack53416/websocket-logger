@@ -1,4 +1,4 @@
-from app.db.init_db import load_db
+from app.db.loader import load_db
 from app.schemas.database import Database
 
 db = load_db()
