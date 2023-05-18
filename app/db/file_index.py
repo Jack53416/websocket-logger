@@ -1,15 +1,13 @@
 import dataclasses
-from enum import Enum
 from pathlib import Path
 from typing import Generic, TypeVar, Type
 
 from pydantic import BaseModel
 
+from app.schemas.city import CitiesCollection
 from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import PlacesCollection
 from app.schemas.trip import TripCollection, TripGeometryCollection
-from app.schemas.ride import RideCollection
-from app.schemas.city import CitiesCollection
 
 BASE_PATH = Path('app/db/sources')
 T = TypeVar("T", bound=BaseModel)
@@ -38,6 +36,5 @@ class FileIndex(object):
     TRIPS = DbFile('trips/trips.json', TripCollection)
     TRIP_GEOMETRIES = DbFile('trips/geometries.json', TripGeometryCollection)
 
-    VEHICLES = DbFile('trips/vehicles.json', RideCollection)
     CITIES = DbFile('cities.json', CitiesCollection)
     BUS_STOPS = DbFile('bus-stops.json', FeatureCollection)

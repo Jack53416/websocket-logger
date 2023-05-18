@@ -1,3 +1,4 @@
+import random
 import uuid
 from itertools import chain
 from pathlib import Path
@@ -7,9 +8,9 @@ from faker import Faker
 
 from app.db.file_index import FileIndex
 from app.schemas.city import City, CitiesCollection
-from app.schemas.geojson import FeatureCollection, PointGeometry
+from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import Quay, PlacesCollection
-from app.schemas.ride import Ride, RideCollection
+from app.schemas.route import Route
 from app.schemas.trip import TripCollection
 
 fake = Faker()
@@ -31,20 +32,6 @@ def create_cities():
 
     with open(f'./sources/{FileIndex.CITIES}', 'w') as file:
         file.write(cities.json())
-
-
-def create_bus_locations():
-    points = [
-        (19.462109, 51.712512),
-        (19.420609, 51.773098),
-        (19.340841, 51.811713)
-    ]
-    rides = [Ride(id=uuid.uuid4(), position=PointGeometry(coordinates=point)) for point in points]
-
-    with open(f'./sources/{FileIndex.VEHICLES}', 'w') as file:
-        file.write(
-            RideCollection(rides=rides).json()
-        )
 
 
 def create_places():
@@ -80,3 +67,12 @@ def compute_trip_bbox(feature_collection: FeatureCollection):
     points = (point for point in coordinates if isinstance(point, Iterable))
     south_bound, north_bound = [bound_point for bound_point in zip(*[(min(axis), max(axis)) for axis in zip(*points)])]
     return [*south_bound, *north_bound]
+
+
+def get_route() -> Route:
+    quay_count = random.randrange(3, 30)
+
+    return Route(
+        id=uuid.uuid4(),
+        quays=[Quay(id=uuid.uuid4(), name=fake.street_name()) for _ in range(quay_count)]
+    )

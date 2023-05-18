@@ -1,17 +1,18 @@
 import uuid
-from typing import Annotated
 
 from fastapi import APIRouter, Depends, Form, Path
 
 from app.api.utils import crud_utils
 from app.api.utils.ride_simulator import RideSimulator
+from app.db import factories
 from app.db.database import get_db
 from app.schemas.city import City
 from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry, FeatureCollection
 from app.schemas.quay import PlacesCollection
-from app.schemas.ride import RideCollection, Ride
-from app.schemas.trip import TripCollection, Trip
+from app.schemas.route import Route
+from app.schemas.trip import Trip
+from app.schemas.vehicle import Vehicle, VehicleEta
 
 router = APIRouter()
 ride_progress = 0
@@ -46,23 +47,25 @@ def get_trip_geometry(route_id: uuid.UUID = Path(..., alias='routeId'),
     return crud_utils.get_route_geometry(db, route_id=route_id)
 
 
-@router.get("/vehicles/{vehicleId}/position", response_model=Ride)
+@router.get("/vehicles/{vehicleId}/position", response_model=Vehicle)
 def get_vehicle_position(db: Database = Depends(get_db),
                          vehicle_id: uuid.UUID = Path(..., alias='vehicleId'),
                          ride_simulator: RideSimulator = Depends(RideSimulator)):
     global ride_progress
 
-    route_id = crud_utils.find_route_for_vehicle(db, vehicle_id=vehicle_id)
+    trip = crud_utils.find_trip_for_vehicle(db, vehicle_id=vehicle_id)
     ride_simulator.load_route(
-        crud_utils.get_route_geometry(db, route_id=route_id)
+        crud_utils.get_route_geometry(db, route_id=trip.route.id)
     )
 
-    ride = Ride(
+    vehicle = Vehicle(
         id=vehicle_id,
         position=PointGeometry(
             coordinates=ride_simulator.interpolate(ride_progress)
 
-        )
+        ),
+        eta=[VehicleEta(quay_id=quay.id, eta=eta) for quay, eta in
+             zip(trip.quays, range(100, (len(trip.quays) + 1) * 100, 100))]
     )
 
     def increment_progress(progress: float):
@@ -72,7 +75,12 @@ def get_vehicle_position(db: Database = Depends(get_db),
         return progress
 
     ride_progress = increment_progress(ride_progress)
-    return ride
+    return vehicle
+
+
+@router.get('/routes/{routeId}', response_model=Route)
+def get_route_detail(route_id: uuid.UUID = Path(..., alias='routeId')):
+    return factories.get_route()
 
 
 @router.get('/cities', response_model=list[City])

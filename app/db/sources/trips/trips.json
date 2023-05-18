@@ -1,42 +1,6 @@
 [
   {
     "vehicle": {
-      "id": "16e2b411-ea00-475d-8bda-bda5b721c88c"
-    },
-    "eta": 600,
-    "line": {
-      "id": "b310e423-2fdb-40d4-9e82-fb84c3c308d9",
-      "name": "federal line in Warsaw, very important",
-      "shortName": "4A",
-      "number": "4A"
-    },
-    "route": {
-      "id": "3de1b6bc-e558-4363-ad2d-2a52c78206be",
-      "startTerminal": {
-        "name": "Warsaw Ochota",
-        "code": "001"
-      },
-      "endTerminal": {
-        "name": "Warsaw Central",
-        "code": "002"
-      }
-    },
-    "quays": [
-      {
-        "id": "6a26f4dc-7d32-4362-800f-913b727b2972",
-        "name": "Warsaw Ochota"
-      },
-      {
-        "id": "79592ddd-07f3-49e0-b030-4e8c2713b96c",
-        "name": "Warsaw Central"
-      }
-    ],
-    "tenant": {
-      "name": "testserver"
-    }
-  },
-  {
-    "vehicle": {
       "id": "43a7b57c-a00a-4466-9af5-f431d993794f"
     },
     "eta": 300,
@@ -233,6 +197,42 @@
     ],
     "tenant": {
       "name": "enrouteq"
+    }
+  },
+  {
+    "vehicle": {
+      "id": "16e2b411-ea00-475d-8bda-bda5b721c88c"
+    },
+    "eta": 600,
+    "line": {
+      "id": "b310e423-2fdb-40d4-9e82-fb84c3c308d9",
+      "name": "federal line in Warsaw, very important",
+      "shortName": "4A",
+      "number": "4A"
+    },
+    "route": {
+      "id": "3de1b6bc-e558-4363-ad2d-2a52c78206be",
+      "startTerminal": {
+        "name": "Warsaw Ochota",
+        "code": "001"
+      },
+      "endTerminal": {
+        "name": "Warsaw Central",
+        "code": "002"
+      }
+    },
+    "quays": [
+      {
+        "id": "6a26f4dc-7d32-4362-800f-913b727b2972",
+        "name": "Warsaw Ochota"
+      },
+      {
+        "id": "79592ddd-07f3-49e0-b030-4e8c2713b96c",
+        "name": "Warsaw Central"
+      }
+    ],
+    "tenant": {
+      "name": "testserver"
     }
   }
 ]
