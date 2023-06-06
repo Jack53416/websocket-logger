@@ -35,13 +35,29 @@ def find_trip(origin: str = Form(...),
     return db.trips
 
 
-@router.get('/geometries/routes/{routeId}/quays/{quayId}', response_model=FeatureCollection)
+@router.get('/geometries/routes/{routeId}/start-quay/{quayId}', response_model=FeatureCollection)
+def get_trip_geometry_to_route_end(route_id: uuid.UUID = Path(..., alias='routeId'),
+                                   quay_id: str = Path(..., alias='quayId'),
+                                   db: Database = Depends(get_db)):
+    """
+    Returns geometry for the provided route uuid. It is meant for the trips that last till te end of route starting
+    on a provided start quay. For mock purposes quay ids do not have any impact on returned data.
+    If no geometry matches route uuid then first geometry is returned
+    """
+
+    return crud_utils.get_route_geometry(db, route_id=route_id)
+
+
+@router.get('/geometries/routes/{routeId}/start-quay/{startQuayId}/end-quay/{endQuayId}',
+            response_model=FeatureCollection)
 def get_trip_geometry(route_id: uuid.UUID = Path(..., alias='routeId'),
-                      quay_id: str = Path(..., alias='quayId'),
+                      start_quay_id: str = Path(..., alias='startQuayId'),
+                      end_quay_id: str = Path(..., alias='endQuayId'),
                       db: Database = Depends(get_db)):
     """
-    Returns geometry for the provided route uuid. For mock purposes quay uuid is not used. If no geometry matches route
-    uuid then first geometry is returned
+    Returns geometry for the provided route uuid. Start and end quays are used to determine metadata of the route
+    geometry like its color on the map. For mock purposes quay ids do not have any impact on returned data.
+    If no geometry matches route uuid then first geometry is returned
     """
 
     return crud_utils.get_route_geometry(db, route_id=route_id)
