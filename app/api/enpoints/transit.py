@@ -1,3 +1,4 @@
+import random
 import uuid
 
 from fastapi import APIRouter, Depends, Form, Path
@@ -74,6 +75,7 @@ def get_vehicle_position(db: Database = Depends(get_db),
         crud_utils.get_route_geometry(db, route_id=trip.route.id)
     )
 
+    eta_step = random.randrange(10, 500)
     vehicle = Vehicle(
         id=vehicle_id,
         position=PointGeometry(
@@ -81,7 +83,7 @@ def get_vehicle_position(db: Database = Depends(get_db),
 
         ),
         eta=[VehicleEta(quay_id=quay.id, eta=eta) for quay, eta in
-             zip(trip.quays, range(100, (len(trip.quays) + 1) * 100, 100))]
+             zip(trip.quays, range(100, (len(trip.quays) + 1) * eta_step, eta_step))]
     )
 
     def increment_progress(progress: float):
