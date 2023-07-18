@@ -4,9 +4,11 @@ import uuid
 from fastapi import APIRouter, Depends, Form, Path
 
 from app.api.utils import crud_utils
+from app.api.utils.endoint_utils import is_random_destination
 from app.api.utils.ride_simulator import RideSimulator
 from app.db import factories
 from app.db.database import get_db
+from app.factories import TripFactory
 from app.schemas.city import City
 from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry, FeatureCollection
@@ -34,6 +36,9 @@ def search_location(phrase: str,
 def find_trip(origin: str = Form(...),
               destination: str = Form(...),
               db: Database = Depends(get_db)):
+    if is_random_destination(origin) or is_random_destination(destination):
+        return [TripFactory() for _ in range(random.randint(1, 15))]
+
     global cut_trips
     cut_trips = not cut_trips
     if cut_trips:
