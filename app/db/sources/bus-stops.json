@@ -283,6 +283,21 @@
         "type": "Point"
       },
       "id": "e9f56c287c90a1942cc8a3d4bab4b38f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zakładowa-Hetmańska",
+        "id": "0053"
+      },
+      "geometry": {
+        "coordinates": [
+          19.568263,
+          51.740320
+        ],
+        "type": "Point"
+      },
+      "id": "e9f56c287c90a1941cc8a3d4bab4b38f"
     }
   ],
   "type": "FeatureCollection"

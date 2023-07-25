@@ -23,6 +23,15 @@ ride_increment = 0.05
 cut_trips = True
 
 
+def get_trips(db: Database = Depends(get_db)) -> list[Trip]:
+    global cut_trips
+    cut_trips = not cut_trips
+    if cut_trips:
+        return [db.trips[-1]]
+
+    return db.trips
+
+
 @router.get('/places-collection/{phrase}/',
             response_model=PlacesCollection)
 def search_location(phrase: str,
@@ -35,16 +44,11 @@ def search_location(phrase: str,
 @router.post('/trips/', response_model=list[Trip])
 def find_trip(origin: str = Form(...),
               destination: str = Form(...),
-              db: Database = Depends(get_db)):
+              trips: list[Trip] = Depends(get_trips)):
     if is_random_destination(origin) or is_random_destination(destination):
         return [TripFactory() for _ in range(random.randint(1, 15))]
 
-    global cut_trips
-    cut_trips = not cut_trips
-    if cut_trips:
-        return [db.trips[-1]]
-
-    return db.trips
+    return trips
 
 
 @router.get('/geometries/routes/{routeId}/start-quay/{quayId}/', response_model=FeatureCollection)
@@ -123,5 +127,5 @@ def get_bus_stops(db: Database = Depends(get_db)):
 
 
 @router.get('/quays/{quayId}/trips/', response_model=list[Trip])
-def get_trips_for_bus_stop(db: Database = Depends(get_db), quay_id: str = Path(..., alias='quayId')):
-    return db.trips
+def get_trips_for_bus_stop(trips: list[Trip] = Depends(get_trips), quay_id: str = Path(..., alias='quayId')):
+    return trips
