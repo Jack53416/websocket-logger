@@ -2,6 +2,7 @@ import random
 import uuid
 
 from fastapi import APIRouter, Depends, Form, Path
+from starlette.responses import Response
 
 from app.api.utils import crud_utils
 from app.api.utils.endoint_utils import is_random_destination
@@ -10,6 +11,7 @@ from app.db import factories
 from app.db.database import get_db
 from app.factories import TripFactory
 from app.schemas.city import City
+from app.schemas.contact_email import ContactEmail
 from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry, FeatureCollection
 from app.schemas.quay import PlacesCollection
@@ -129,3 +131,9 @@ def get_bus_stops(db: Database = Depends(get_db)):
 @router.get('/quays/{quayId}/trips/', response_model=list[Trip])
 def get_trips_for_bus_stop(trips: list[Trip] = Depends(get_trips), quay_id: str = Path(..., alias='quayId')):
     return trips
+
+
+@router.post('/contact-us/', response_class=Response)
+def send_contact_email(contact_email: ContactEmail):
+    """Mock endpoint"""
+    pass
