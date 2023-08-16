@@ -30,7 +30,7 @@ class Trip(RWSchema, BaseModel):
 
 
 class TripCollection(RWSchema, BaseModel):
-    __root__: list[Trip]
+    trips: list[Trip]
 
 
 class TripGeometryCollection(RWSchema, BaseModel):

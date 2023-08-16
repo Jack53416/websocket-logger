@@ -16,7 +16,7 @@ from app.schemas.database import Database
 from app.schemas.geojson import PointGeometry, FeatureCollection
 from app.schemas.quay import PlacesCollection
 from app.schemas.route import Route
-from app.schemas.trip import Trip
+from app.schemas.trip import Trip, TripCollection
 from app.schemas.vehicle import Vehicle, VehicleEta
 
 router = APIRouter()
@@ -25,11 +25,11 @@ ride_increment = 0.05
 cut_trips = True
 
 
-def get_trips(db: Database = Depends(get_db)) -> list[Trip]:
+def get_trips(db: Database = Depends(get_db)) -> TripCollection:
     global cut_trips
     cut_trips = not cut_trips
     if cut_trips:
-        return [db.trips[-1]]
+        return TripCollection(trips=[db.trips.trips[-1]])
 
     return db.trips
 
@@ -43,12 +43,12 @@ def search_location(phrase: str,
     )
 
 
-@router.post('/trips/', response_model=list[Trip])
+@router.post('/trips/', response_model=TripCollection)
 def find_trip(origin: str = Form(...),
               destination: str = Form(...),
               trips: list[Trip] = Depends(get_trips)):
     if is_random_destination(origin) or is_random_destination(destination):
-        return [TripFactory() for _ in range(random.randint(1, 15))]
+        return TripCollection(trips=[TripFactory() for _ in range(random.randint(1, 15))])
 
     return trips
 
