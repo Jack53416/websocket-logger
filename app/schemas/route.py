@@ -16,8 +16,8 @@ class RouteBase(RWSchema, BaseModel):
 
 
 class TripRoute(RouteBase):
-    start_terminal: Terminal
-    end_terminal: Terminal
+    start_terminus: Terminal
+    end_terminus: Terminal
 
 
 class Route(RouteBase):

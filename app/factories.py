@@ -39,8 +39,8 @@ class TripRouteFactory(factory.Factory):
         model = TripRoute
 
     id = factory.Faker('uuid4')
-    start_terminal = factory.SubFactory(TerminalFactory)
-    end_terminal = factory.SubFactory(TerminalFactory)
+    start_terminus = factory.SubFactory(TerminalFactory)
+    end_terminus = factory.SubFactory(TerminalFactory)
 
 
 class QuayFactory(factory.Factory):

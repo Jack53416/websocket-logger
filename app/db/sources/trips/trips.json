@@ -12,11 +12,11 @@
     },
     "route": {
       "id": "508ff3b0-2e5a-47ba-a22e-cf47ebbae4d3",
-      "startTerminal": {
+      "startTerminus": {
         "name": "ICZMP",
         "code": "100"
       },
-      "endTerminal": {
+      "endTerminus": {
         "name": "Łódź Żabieniec",
         "code": "200"
       }
@@ -64,11 +64,11 @@
     },
     "route": {
       "id": "508ff3b0-2e5a-47ba-a22e-cf47ebbae4d3",
-      "startTerminal": {
+      "startTerminus": {
         "name": "ICZMP",
         "code": "100"
       },
-      "endTerminal": {
+      "endTerminus": {
         "name": "Łódź Żabieniec",
         "code": "200"
       }
@@ -212,11 +212,11 @@
     },
     "route": {
       "id": "3de1b6bc-e558-4363-ad2d-2a52c78206be",
-      "startTerminal": {
+      "startTerminus": {
         "name": "Warsaw Ochota",
         "code": "001"
       },
-      "endTerminal": {
+      "endTerminus": {
         "name": "Warsaw Central",
         "code": "002"
       }
