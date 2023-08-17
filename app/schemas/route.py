@@ -7,6 +7,7 @@ from app.schemas.quay import Quay
 
 
 class Terminal(RWSchema, BaseModel):
+    id: uuid.UUID = uuid.uuid4()
     name: str
     code: str
 

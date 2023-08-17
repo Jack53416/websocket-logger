@@ -13,5 +13,6 @@ def get_route_geometry(db: Database, *, route_id: uuid.UUID) -> FeatureCollectio
 
 
 def find_trip_for_vehicle(db: Database, *, vehicle_id: uuid.UUID) -> Trip:
-    trip = next((trip for trip in db.trips if trip.vehicle.id == vehicle_id), db.trips[0])
+    trip = next((trip for trip in db.trip_collection.trips if trip.vehicle.id == vehicle_id),
+                db.trip_collection.trips[0])
     return trip

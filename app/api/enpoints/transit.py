@@ -29,9 +29,9 @@ def get_trips(db: Database = Depends(get_db)) -> TripCollection:
     global cut_trips
     cut_trips = not cut_trips
     if cut_trips:
-        return TripCollection(trips=[db.trips.trips[-1]])
+        return TripCollection(trips=[db.trip_collection.trips[-1]])
 
-    return db.trips
+    return db.trip_collection
 
 
 @router.get('/places-collection/{phrase}/',
@@ -45,9 +45,9 @@ def search_location(phrase: str,
 
 @router.post('/trips/', response_model=TripCollection)
 def find_trip(origin: str = Form(...),
-              destination: str = Form(...),
+              destination: str | None = Form(None),
               trips: list[Trip] = Depends(get_trips)):
-    if is_random_destination(origin) or is_random_destination(destination):
+    if is_random_destination(origin) or is_random_destination(destination or ''):
         return TripCollection(trips=[TripFactory() for _ in range(random.randint(1, 15))])
 
     return trips

@@ -10,7 +10,7 @@ from app.schemas.trip import TripCollection
 
 class Database(BaseModel):
     places_collection: PlacesCollection
-    trips: TripCollection
+    trip_collection: TripCollection
     trip_geometries: dict[uuid.UUID, FeatureCollection]
     cities: list[City]
     bus_stops: FeatureCollection

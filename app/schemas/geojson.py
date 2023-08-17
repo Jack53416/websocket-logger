@@ -27,6 +27,7 @@ class PointGeometry(Geometry):
 
 
 class Feature(BaseModel):
+    id: str | None
     type: GeometryType = GeometryType.FEATURE
     bbox: List[float] | None
     properties: Dict[str, Any] | None
