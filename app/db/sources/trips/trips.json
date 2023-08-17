@@ -1,0 +1,238 @@
+[
+  {
+    "vehicle": {
+      "id": "43a7b57c-a00a-4466-9af5-f431d993794f"
+    },
+    "eta": 300,
+    "line": {
+      "id": "87bf73e9-6cf0-4f71-8b0a-695601600f8e",
+      "name": "ICZMP - city center",
+      "short_name": "70",
+      "number": "70"
+    },
+    "route": {
+      "id": "508ff3b0-2e5a-47ba-a22e-cf47ebbae4d3",
+      "startTerminal": {
+        "name": "ICZMP",
+        "code": "100"
+      },
+      "endTerminal": {
+        "name": "Łódź Żabieniec",
+        "code": "200"
+      }
+    },
+    "quays": [
+      {
+        "id": "83504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "7594249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "5d303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "53504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "5594249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "5d3d3fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      }
+    ],
+    "tenant": {
+      "name": "enrouteq"
+    }
+  },
+  {
+    "vehicle": {
+      "id": "0a9b32fe-7148-4bc3-83c3-7f64c996037c"
+    },
+    "eta": 421,
+    "line": {
+      "id": "87bf73e9-6cf0-4f71-8b0a-695601600f8e",
+      "name": "Long route for scrolling",
+      "short_name": "99S",
+      "number": "99S"
+    },
+    "route": {
+      "id": "508ff3b0-2e5a-47ba-a22e-cf47ebbae4d3",
+      "startTerminal": {
+        "name": "ICZMP",
+        "code": "100"
+      },
+      "endTerminal": {
+        "name": "Łódź Żabieniec",
+        "code": "200"
+      }
+    },
+    "quays": [
+      {
+        "id": "53504eeb-2f99-43eb-84a3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "7594249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "8d303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "93504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "0594249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "77303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      },
+      {
+        "id": "58904eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "5545249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "1d303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "23504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "4594249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "3ef03fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      },
+      {
+        "id": "53a34eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "5597289a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "00303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "01504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "0294249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "03303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      },
+      {
+        "id": "04504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "0594249a-f190-4c65-8f65-b5eeca6321d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "06303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "07504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "0894249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "09303fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      },
+      {
+        "id": "10504eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Oxford Street"
+      },
+      {
+        "id": "1014249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Leicester"
+      },
+      {
+        "id": "10203fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Fullham"
+      },
+      {
+        "id": "10304eeb-2f99-43eb-8ba3-425b54ebeb67",
+        "name": "Green House"
+      },
+      {
+        "id": "1044249a-f190-4c65-8f65-b5eeca6221d9",
+        "name": "Grampian Dale"
+      },
+      {
+        "id": "10503fc3-a7fe-41d0-8c7d-f788bab6fb29",
+        "name": "Ash Square"
+      }
+    ],
+    "tenant": {
+      "name": "enrouteq"
+    }
+  },
+  {
+    "vehicle": {
+      "id": "16e2b411-ea00-475d-8bda-bda5b721c88c"
+    },
+    "eta": 600,
+    "line": {
+      "id": "b310e423-2fdb-40d4-9e82-fb84c3c308d9",
+      "name": "federal line in Warsaw, very important",
+      "shortName": "4A",
+      "number": "4A"
+    },
+    "route": {
+      "id": "3de1b6bc-e558-4363-ad2d-2a52c78206be",
+      "startTerminal": {
+        "name": "Warsaw Ochota",
+        "code": "001"
+      },
+      "endTerminal": {
+        "name": "Warsaw Central",
+        "code": "002"
+      }
+    },
+    "quays": [
+      {
+        "id": "6a26f4dc-7d32-4362-800f-913b727b2972",
+        "name": "Warsaw Ochota"
+      },
+      {
+        "id": "79592ddd-07f3-49e0-b030-4e8c2713b96c",
+        "name": "Warsaw Central"
+      }
+    ],
+    "tenant": {
+      "name": "testserver"
+    }
+  }
+]

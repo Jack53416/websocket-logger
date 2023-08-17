@@ -1,10 +1,12 @@
 import bisect
 import numpy as np
 from itertools import chain, pairwise
-from typing import cast, List, Tuple
+from typing import cast, List, Tuple, TypeAlias
 
 from collections import OrderedDict
 from app.schemas.geojson import FeatureCollection, GeometryType
+
+Vector: TypeAlias = tuple[tuple[float, float], tuple[float, float]]
 
 
 class RideSimulationException(Exception):
@@ -12,6 +14,8 @@ class RideSimulationException(Exception):
 
 
 class RideSimulator(object):
+    gps_decimals = 6
+
     def __init__(self):
         self._coordinate_map: OrderedDict = OrderedDict()
 
@@ -53,14 +57,19 @@ class RideSimulator(object):
         if normalized_distance == 1:
             return next(reversed(self._coordinate_map))
 
-        idx = self._find_coordinate_by_distance(self.route_length * normalized_distance)
-        coordinates = list(self._coordinate_map.keys())
-
-        start = coordinates[idx - 1]
-        end = coordinates[idx]
+        start, end = self.get_move_vector(normalized_distance)
 
         d = self.route_length * normalized_distance - self._coordinate_map[start]
         return self.move_over_vector(start, end, d)
+
+    def get_move_vector(self, distance: float) -> Vector:
+        nearest_point_idx = self._find_coordinate_by_distance(self.route_length * distance)
+        coordinates = list(self._coordinate_map.keys())
+
+        if nearest_point_idx == 0:
+            return coordinates[0], coordinates[1]
+
+        return coordinates[nearest_point_idx - 1], coordinates[nearest_point_idx]
 
     @staticmethod
     def move_over_vector(v_start: Tuple[float, float],
@@ -69,4 +78,4 @@ class RideSimulator(object):
         start, end = np.array(v_start), np.array(v_end)
         v = end - start
         u = v / np.linalg.norm(v)
-        return tuple(start + dist * u)
+        return tuple(np.round(start + dist * u, decimals=RideSimulator.gps_decimals))

@@ -1,17 +1,12 @@
 import uuid
-from enum import Enum
-from typing import List
 
 from pydantic import BaseModel
 
 from app.schemas.common.base import RWSchema
 from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import Quay
-from app.schemas.route import Route
-
-
-class TripPartType(str, Enum):
-    VEHICLE = "VEHICLE"
+from app.schemas.route import TripRoute
+from app.schemas.vehicle import VehicleInDb
 
 
 class Tenant(RWSchema, BaseModel):
@@ -25,19 +20,18 @@ class Line(RWSchema, BaseModel):
     number: str | None
 
 
-class TripPart(RWSchema, BaseModel):
-    line: Line
-    route: Route
-    quays: List[Quay]
-    route_geometry: FeatureCollection
-    trip_part_type: TripPartType = TripPartType.VEHICLE
-
-
 class Trip(RWSchema, BaseModel):
+    vehicle: VehicleInDb
+    eta: int
+    line: Line
+    route: TripRoute
+    quays: list[Quay]
     tenant: Tenant
-    trip_parts: List[TripPart]
-    starts_in: int
 
 
-class TripCollection(BaseModel):
-    trips: List[Trip]
+class TripCollection(RWSchema, BaseModel):
+    __root__: list[Trip]
+
+
+class TripGeometryCollection(RWSchema, BaseModel):
+    __root__: dict[uuid.UUID, FeatureCollection]

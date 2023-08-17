@@ -1,17 +1,16 @@
-from typing import List
+import uuid
 
 from pydantic import BaseModel
 
 from app.schemas.city import City
 from app.schemas.geojson import FeatureCollection
 from app.schemas.quay import PlacesCollection
-from app.schemas.ride import RideCollection
-from app.schemas.trip import TripCollection
+from app.schemas.trip import Trip
 
 
 class Database(BaseModel):
     places_collection: PlacesCollection
-    trip_collection: TripCollection
-    bus_locations: RideCollection
-    cities: List[City]
+    trips: list[Trip]
+    trip_geometries: dict[uuid.UUID, FeatureCollection]
+    cities: list[City]
     bus_stops: FeatureCollection
